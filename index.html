@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inclusive Learning Platform</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <body>
+</head>
+    <!-- Header Section -->
+    <header>
+        <img src="../images/Next Gen Thinkers.png" alt="logo not available">
+        <p>Visual ,Hearing impaired </p>
+        <p>and Dyslexia  Support</p>
+        <a href="chatbot.html"><img src="../images/chatbot1.jpg" alt="logo is not available"></a>
+    </header>
+<section class="navbar">
+    <ul>
+     <li class="item"><a href="#user-cate">Home</a></li>
+     <li class="item"><a href="#visuallyImpairedBox">Services</a></li>
+     <li class="item"><a href="#contact">Contact Us</a></li>
+    </ul>
+    </section>
+    <nav id="user-cate">
+        <!-- <img src="main4.jpg" alt="img is not found"> -->
+        <h4> "Create a learning environment where every student, regardless of their abilities, can thrive through personalized, adaptive content delivery methods like text-to-speech, visual aids, and speech-to-text interpretation."</h4>
+     <button  id="btn1" type="submit">Sign In</button>
+    </nav>
+    <!-- Main Banner Section -->
+    
+    <!-- User Categories Section -->
+    <section class="user-categories">
+        
+        <div class="category-box" id="visuallyImpairedBox" onclick="selectCategory('visuallyImpaired')" >
+           <a href="text_to_speech.html"> <img src="../images/visual logo.png" alt="not found"> </a> 
+            <h3>Visually Impaired</h3>
+            <p>Enable text-to-speech </p>
+        </div>
+        <div class="category-box" id="hearingImpairedBox" onclick="selectCategory('hearingImpaired')">
+            <a href="speech_to_text.html"> <img src="../images/hearing logo.png" alt="not found"> </a> 
+            <h3>Hearing Impaired</h3>
+            <p>Enable speech to text</p>
+        </div>
+        <div class="category-box" id="dyslexicBox" onclick="selectCategory('dyslexic')">
+            <a href="dyslexic.html"> <img src="../images/dyslexic logo.png" alt="not found"> </a> 
+            <h3>Dyslexic</h3>
+            <p>Enable dyslexia-friendly fonts and customized reading modes.</p>
+        </div>
+    </section>
+
+   <section id="contact">
+    
+    <ul>
+        <li class="item1">
+            <img src="../images/facebook.webp" alt="img not found">
+            <a href="https://facebook.com/">facebook</a></li>
+        <li class="item2">
+            <img src="../images/twitter.webp" alt="img">
+            <a href="https:/twitter.com/">twitter</a></li>
+        <li class="item3">
+            <img src="../images/insta.webp" alt="img">
+            <a href="https://instagram.com/">Instagram</a></li>
+       </ul>
+   </section>
+    <footer>
+        <p>&copy; 2024 Inclusive Learning Platform | All Rights Reserved</p>
+    </footer>
+<script>
+    document.getElementById('btn1').addEventListener('click', function (event){
+    event.preventDefault();
+    window.location.href='sign.html';
+});
+</script>
+   <script src="../script/script.js"></script>
+     
+       
+
+       

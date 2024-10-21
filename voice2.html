@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Voice Assistant</title>
+</head>
+<body>
+  <h1>Advanced Voice Assistant</h1>
+  <button id="start-btn">Start Voice Assistant</button>
+  <p id="output"></p>
+
+  <script>
+    // Check if browser supports Web Speech API
+    if ('speechSynthesis' in window && 'webkitSpeechRecognition' in window) {
+      const startBtn = document.getElementById('start-btn');
+      const output = document.getElementById('output');
+
+      // Create Speech Recognition and Speech Synthesis instances
+      const recognition = new webkitSpeechRecognition();
+      const synth = window.speechSynthesis;
+
+      // Set properties for speech recognition
+      recognition.lang = 'en-US';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      // Function to speak text
+      function speak(text) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        synth.speak(utterance);
+      }
+
+      // Function to send a command to an NLP model (e.g., OpenAI GPT)
+      async function getAIResponse(command) {
+        const apiKey = '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'; // Replace with your OpenAI API key
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo", // or use the most advanced model
+            messages: [{ role: "user", content: command }]
+          })
+        });
+        const data = await response.json();
+        return data.choices[0].message.content;
+      }
+
+      // Start speech recognition on button click
+      startBtn.addEventListener('click', () => {
+        recognition.start();
+        output.textContent = 'Listening...';
+      });
+
+      // On speech recognition result
+      recognition.onresult = async (event) => {
+        const command = event.results[0][0].transcript;
+        output.textContent = `You said: ${command}`;
+
+        // Send the user's command to the AI model
+        try {
+          const aiResponse = await getAIResponse(command);
+          output.textContent += `\nAI says: ${aiResponse}`;
+          speak(aiResponse);
+        } catch (error) {
+          speak("Sorry, there was an error in processing your request.");
+        }
+      };
+
+      // On recognition end
+      recognition.onend = () => {
+        output.textContent += ' (Stopped listening)';
+      };
+
+      // Error handling
+      recognition.onerror = (event) => {
+        console.error(event.error);
+        output.textContent = 'Error occurred: ' + event.error;
+      };
+    } else {
+      alert("Your browser doesn't support speech recognition or synthesis.");
+    }
+  </script>
+</body>
+</html>

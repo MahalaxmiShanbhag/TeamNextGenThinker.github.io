@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyslexia</title>
+    <style>
+
+        /* General Styling */
+        body {
+            background-image:url(../images/dya.jpg);
+            background-repeat: no-repeat;
+            background-size:cover;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+       
+        /* User Categories Section */
+        .user-categories {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px auto;
+            max-width: 1000px;
+        }
+        .user-categories img{
+            width: 150px;
+            height: 150px;
+        }
+        
+        .category-box {
+           
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 30%;
+        }
+
+        .category-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #795bda;
+        }
+
+        .category-box p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .category-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+       
+        
+    </style>
+</head>
+<body>
+
+   
+    <!-- User Categories Section -->
+    <section class="user-categories">
+       
+        <!-- <img src="dy.jpeg" alt=""></div> -->
+        <div class="category-box" id="Understanding Dyslexia" onclick="selectCategory('Understanding Dyslexia')">
+           <a href="https://www.nessy.com/en-us/free-resources/dyslexia-awareness-month-2024"> <img src="../images/understand logo.jpg" alt="img not found"></a>
+            <h3>Understanding Dyslexia</h3>
+        </div>
+        <div class="category-box" id="About Dyslexia" onclick="selectCategory('About Dyslexia')">
+       <a href="https://www.nessy.com/en-us/dyslexia-explained"><img src="../images/about logo.jpg" alt="img not found"></a> 
+            <h3>About Dyslexia</h3>
+           
+        </div>
+        <div class="category-box" id="Store" onclick="selectCategory('Store')">
+        <a href="https://www.nessy.com/en-us/shop"><img src="../images/store logo.jpg" alt="img not found"></a>
+            <h3>Store</h3>
+           
+        </div>
+    </section>

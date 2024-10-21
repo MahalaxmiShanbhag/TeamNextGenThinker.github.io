@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Voice Assistant</title>
+  <style></style>
+</head>
+<body>
+  <h1>Simple Voice Assistant</h1>
+  <button id="start-btn">Start Voice Assistant</button>
+  <p id="output"></p>
+
+  <script>
+    // Check if browser supports Web Speech API
+if ('speechSynthesis' in window && 'webkitSpeechRecognition' in window) {
+    const startBtn = document.getElementById('start-btn');
+    const output = document.getElementById('output');
+    
+    // Create Speech Recognition and Speech Synthesis instances
+    const recognition = new webkitSpeechRecognition();
+    const synth = window.speechSynthesis;
+    
+    // Set properties
+    recognition.lang = 'en-US'; // Language for recognition
+    recognition.continuous = false; // Only listen for one command at a time
+    recognition.interimResults = false; // Only show final results
+
+    // Function to speak text
+    function speak(text) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        synth.speak(utterance);
+    }
+
+    // Function to handle voice commands
+    function handleVoiceCommand(command) {
+        command = command.toLowerCase();
+        if (command.includes('hello')) {
+            speak('Hello! How can I assist you today?');
+        } else if (command.includes('your name')) {
+            speak('I am your voice assistant. How can I help?');
+        } else if (command.includes('time')) {
+            const now = new Date();
+            speak(`The current time is ${now.getHours()} : ${now.getMinutes()}`);
+        } else if (command.includes('weather')) {
+            speak('I cannot fetch real-time weather, but you can check your favorite weather app!');
+        } else {
+            speak("Sorry, I didn't understand that.");
+        }
+    }
+
+    // Start speech recognition on button click
+    startBtn.addEventListener('click', () => {
+        recognition.start();
+        output.textContent = 'Listening...';
+    });
+
+    // On speech recognition result
+    recognition.onresult = (event) => {
+        const command = event.results[0][0].transcript;
+        output.textContent = `You said: ${command}`;
+        handleVoiceCommand(command);
+    };
+
+    // On recognition end, stop the process
+    recognition.onend = () => {
+        output.textContent += ' (Stopped listening)';
+    };
+
+    // Error handling
+    recognition.onerror = (event) => {
+        console.error(event.error);
+        output.textContent = 'Error occurred: ' + event.error;
+    };
+
+} else {
+    alert("Your browser doesn't support speech recognition or synthesis.");
+}
+
+  </script>
+</body>
+</html>
